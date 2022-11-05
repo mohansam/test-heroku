@@ -29,9 +29,9 @@ const getProductDetailsByPId=`SELECT region_name,product_name,sku_in_kgs,pellet_
                               where product_details.product_id=$1`;
 
 const getProductDetailsByRegion=`SELECT region_name,product_name,sku_in_kgs,pellet_size,packing_type,pellet_price,mash_price FROM product_details 
-                                INNER JOIN regions ON regions.region_id = product_details.region_id 
-                                INNER JOIN price_details ON price_details.region_id = product_details.region_id 
-                                INNER JOIN products ON products.product_id=product_details.product_id where region_name=$1`;
+                                JOIN price_details ON product_details.region_id = price_details.region_id and product_details.product_id = price_details.product_id
+                                JOIN regions ON product_details.region_id=regions.region_id
+                                JOIN products ON product_details.product_id=products.product_id where region_name=$1`;
                     
 
 module.exports={getProductDetailsByPId,getProductDetailsByRegion}

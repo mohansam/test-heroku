@@ -1,5 +1,12 @@
 const {dbClient}=require('../db/connection');
 const {getProductDetailsByPId,getProductDetailsByRegion}=require('../db/queries');
+
+/**
+ * This function queries db by region name and returns the product list
+ * @param {object} req 
+ * @param {object} res 
+ * @returns 
+ */
 const getProductsByRegion =async(req,res)=>{
     try{
         const {region}=req.query;
@@ -12,6 +19,12 @@ const getProductsByRegion =async(req,res)=>{
     
 };
 
+/**
+ * This function queries db by product id and returns the product list
+ * @param {object} req 
+ * @param {object} res 
+ * @returns 
+ */
 const getProductsByPId =async(req,res)=>{
     try{
         const {pId}=req.query;
